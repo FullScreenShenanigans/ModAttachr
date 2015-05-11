@@ -29,7 +29,7 @@ interface IModAttachrMod {
 }
 
 interface IModAttachrEvent {
-
+    // wat
 }
 
 /**
@@ -42,18 +42,18 @@ interface IModAttachrEvent {
  */
 class ModAttachr {
     // An Object of the mods with a listing for each event
-    // by event names (e.g. "onReset" => [{Mod1}, {Mod2}]
+    // by event names (e.g. "onReset" => [{Mod1}, {Mod2}].
     private events: any;
         
     // An Object of information on each mod, keyed by mod names
-    // (e.g. { "MyMod": { "name": "MyMod", "enabled": 1, ...} ...})
+    // (e.g. { "MyMod": { "name": "MyMod", "enabled": 1, ...} ...}).
     private mods: any;
         
     // A new StatsHolder object to be created to store whether each
-    // mod is stored locally (optional)
+    // mod is stored locally (optional).
     private StatsHolder: StatsHoldr;
         
-    // A default scope to apply mod events from (optional)
+    // A default scope to apply mod events from (optional).
     private scopeDefault: any;
     
     /**
@@ -65,9 +65,10 @@ class ModAttachr {
     constructor(settings: IModAttachrSettings) {
         this.mods = {};
         this.events = {};
-        this.scopeDefault = settings.scopeDefault;
 
         if (settings) {
+            this.scopeDefault = settings.scopeDefault;
+
             if (settings.storeLocally) {
                 this.StatsHolder = new StatsHoldr(settings.storageSettings);
             }
@@ -94,6 +95,13 @@ class ModAttachr {
      */
     getEvents(): any {
         return this.events;
+    }
+
+    /**
+     * @return {Object[]} The mods associated with a particular event.
+     */
+    getEvent(name: string): IModAttachrMod[] {
+        return this.events[name];
     }
     
     /**
@@ -176,7 +184,7 @@ class ModAttachr {
      * 
      * @param {String} name   The name of the mod to enable.
      */
-    enableMod(name: string): void {
+    enableMod(name: string): any {
         var mod: IModAttachrMod = this.mods[name],
             args: any[];
 
@@ -188,12 +196,12 @@ class ModAttachr {
         args = Array.prototype.slice.call(arguments);
         args[0] = mod;
 
-        if (mod.events["onModEnable"]) {
-            this.fireModEvent("onModEnable", mod.name, arguments);
-        }
-
         if (this.StatsHolder) {
             this.StatsHolder.set(name, true);
+        }
+
+        if (mod.events["onModEnable"]) {
+            return this.fireModEvent("onModEnable", mod.name, arguments);
         }
     }
     
@@ -213,7 +221,7 @@ class ModAttachr {
      * 
      * @param {String} name   The name of the mod to disable.
      */
-    disableMod(name: string): void {
+    disableMod(name: string): any {
         var mod: IModAttachrMod = this.mods[name],
             args: any[];
 
@@ -225,12 +233,12 @@ class ModAttachr {
         args = Array.prototype.slice.call(arguments);
         args[0] = mod;
 
-        if (mod.events["onModDisable"]) {
-            this.fireModEvent("onModDisable", mod.name, args);
-        }
-
         if (this.StatsHolder) {
             this.StatsHolder.set(name, false);
+        }
+
+        if (mod.events["onModDisable"]) {
+            return this.fireModEvent("onModDisable", mod.name, args);
         }
     }
     
@@ -257,9 +265,9 @@ class ModAttachr {
         }
 
         if (mod.enabled) {
-            this.disableMod(name);
+            return this.disableMod(name);
         } else {
-            this.enableMod(name);
+            return this.enableMod(name);
         }
     }
     
@@ -326,6 +334,6 @@ class ModAttachr {
             throw new Error("Mod does not contain event: '" + eventName + "'");
         }
 
-        fires.apply(mod.scope, args);
+        return fires.apply(mod.scope, args);
     }
 }
