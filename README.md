@@ -1,6 +1,6 @@
 # ModAttachr
 
-An addon for for extensible modding functionality. "Mods" register triggers such
+An addon to define extensibility triggers for projects for modding. "Mods" register triggers such
 as "onModEnable" or "onReset" that can be triggered. 
 
 
