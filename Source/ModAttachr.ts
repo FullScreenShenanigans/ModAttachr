@@ -82,12 +82,20 @@ class ModAttachr {
     
     /* Simple gets 
     */
-    
+
     /**
      * @return {Object} An Object keying each mod by their name.
      */
     getMods(): any {
         return this.mods;
+    }
+    
+    /**
+     * @param {String} name   The name of the mod to return.
+     * @return {Object} The mod keyed by the name.
+     */
+    getMod(name: string): IModAttachrMod {
+        return this.mods[name];
     }
     
     /**

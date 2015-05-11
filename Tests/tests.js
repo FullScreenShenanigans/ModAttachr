@@ -58,3 +58,23 @@ describe("constructor", function () {
         });
     });
 });
+
+describe("triggering and enabling", function () {
+    it("enables mods", function () {
+        chai.expect(ModAttacher.enableMod("Testing Mod")).to.be.equal("I am enabled!");
+    });
+
+    it("fires events", function () {
+        var settings = ModAttacher.getMod("Testing Mod").settings;
+
+        ModAttacher.fireEvent("log");
+        chai.expect(settings.numLogs).to.be.equal(1);
+
+        ModAttacher.fireEvent("log");
+        chai.expect(settings.numLogs).to.be.equal(2);
+    });
+
+    it("disables mods", function () {
+        chai.expect(ModAttacher.toggleMod("Testing Mod")).to.be.equal("I am disabled!");
+    });
+});
