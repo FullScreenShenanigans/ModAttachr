@@ -9,16 +9,13 @@ var storeLocally = true,
         "enabled": false,
         "events": {
             "onModEnable": function () {
-                console.log("I am enabled!");
                 return "I am enabled!";
             },
             "onModDisable": function () {
-                console.log("I am disabled...");
                 return "I am disabled!";
             },
             "log": function (mod) {
                 var numLog = (mod.settings.numLogs += 1);
-                console.log("Log " + numLog + ": " + Date());
             }
         },
         "settings": {

@@ -9,7 +9,7 @@ interface IModAttachrSettings {
 
     // Settings to use for a new StatsHoldr, if storeLocally is true.
     storageSettings?: IStatsHoldrSettings;
-    
+
     // A default scope to apply mod events from when a mod doesn't provide one.
     scopeDefault?: any;
 }
@@ -28,10 +28,6 @@ interface IModAttachrMod {
     enabled?: boolean;
 }
 
-interface IModAttachrEvent {
-    // wat
-}
-
 /**
  * ModAttachr.js
  * 
@@ -44,18 +40,18 @@ class ModAttachr {
     // An Object of the mods with a listing for each event
     // by event names (e.g. "onReset" => [{Mod1}, {Mod2}].
     private events: any;
-        
+
     // An Object of information on each mod, keyed by mod names
     // (e.g. { "MyMod": { "name": "MyMod", "enabled": 1, ...} ...}).
     private mods: any;
-        
+
     // A new StatsHolder object to be created to store whether each
     // mod is stored locally (optional).
     private StatsHolder: StatsHoldr;
-        
+
     // A default scope to apply mod events from (optional).
     private scopeDefault: any;
-    
+
     /**
      * Resets the ModAttachr.
      * 
@@ -78,8 +74,8 @@ class ModAttachr {
             }
         }
     }
-    
-    
+
+
     /* Simple gets 
     */
 
@@ -89,7 +85,7 @@ class ModAttachr {
     getMods(): any {
         return this.mods;
     }
-    
+
     /**
      * @param {String} name   The name of the mod to return.
      * @return {Object} The mod keyed by the name.
@@ -97,7 +93,7 @@ class ModAttachr {
     getMod(name: string): IModAttachrMod {
         return this.mods[name];
     }
-    
+
     /**
      * @return {Object} An Object keying each event by their name.
      */
@@ -111,7 +107,7 @@ class ModAttachr {
     getEvent(name: string): IModAttachrMod[] {
         return this.events[name];
     }
-    
+
     /**
      * @return {StatsHoldr} The StatsHoldr if storeLocally is true, or undefined
      *                      otherwise.
@@ -119,11 +115,11 @@ class ModAttachr {
     getStatsHolder(): StatsHoldr {
         return this.StatsHolder;
     }
-    
-    
+
+
     /* Alterations 
     */
-    
+
     /**
      * Adds a mod to the pool of mods, listing it under all the relevant events.
      * If the event is enabled, the "onModEnable" event for it is triggered.
@@ -133,15 +129,12 @@ class ModAttachr {
      */
     addMod(mod: IModAttachrMod): void {
         var modEvents: any = mod.events,
-            event: IModAttachrEvent,
             name: string;
 
         for (name in modEvents) {
             if (!modEvents.hasOwnProperty(name)) {
                 continue;
             }
-
-            event = modEvents[name];
 
             if (!this.events.hasOwnProperty(name)) {
                 this.events[name] = [mod];
@@ -157,7 +150,7 @@ class ModAttachr {
         this.mods[mod.name] = mod;
 
         // If the mod is enabled, trigger its "onModEnable" event
-        if (mod.enabled && mod.events["onModEnable"]) {
+        if (mod.enabled && mod.events.onModEnable) {
             this.fireModEvent("onModEnable", mod.name, arguments);
         }
 
@@ -174,7 +167,7 @@ class ModAttachr {
             }
         }
     }
-    
+
     /**
      * Adds each mod in a given Array.
      * 
@@ -185,7 +178,7 @@ class ModAttachr {
             this.addMod(mods[i]);
         }
     }
-    
+
     /**
      * Enables a mod of the given name, if it exists. The onModEnable event is
      * called for the mod.
@@ -208,11 +201,11 @@ class ModAttachr {
             this.StatsHolder.set(name, true);
         }
 
-        if (mod.events["onModEnable"]) {
+        if (mod.events.onModEnable) {
             return this.fireModEvent("onModEnable", mod.name, arguments);
         }
     }
-    
+
     /**
      * Enables any number of mods, given as any number of Strings or Arrays of
      * Strings.
@@ -222,7 +215,7 @@ class ModAttachr {
     enableMods(...names: string[]): void {
         names.forEach(this.enableMod.bind(this));
     }
-    
+
     /**
      * Disables a mod of the given name, if it exists. The onModDisable event is
      * called for the mod.
@@ -245,11 +238,11 @@ class ModAttachr {
             this.StatsHolder.set(name, false);
         }
 
-        if (mod.events["onModDisable"]) {
+        if (mod.events.onModDisable) {
             return this.fireModEvent("onModDisable", mod.name, args);
         }
     }
-    
+
     /**
      * Disables any number of mods, given as any number of Strings or Arrays of
      * Strings.
@@ -259,7 +252,7 @@ class ModAttachr {
     disableMods(...names: string[]): void {
         names.forEach(this.disableMod.bind(this));
     }
-    
+
     /**
      * Toggles a mod via enableMod/disableMod of the given name, if it exists.
      * 
@@ -278,7 +271,7 @@ class ModAttachr {
             return this.enableMod(name);
         }
     }
-    
+
     /**
      * Toggles any number of mods, given as any number of Strings or Arrays of
      * Strings.

@@ -52,20 +52,20 @@ one isn't provided by the mod.
             "enabled": false,
             "events": {
                 "onModEnable": function () {
-                    console.log("I am enabled!");
+                    return "I am enabled!";
                 },
                 "onModDisable": function () {
-                    console.log("I am disabled...");
+                    return "I am disabled...";
                 },
                 "log": function () {
-                    console.log("You have logged me.");
+                    return "You have logged me";
                 }
             }
         }]
     });
-    ModAttacher.enableMod("Testing Mod"); // log: "I am enabled!"
-    ModAttacher.fireEvent("log"); // log: "You have logged me."
-    ModAttacher.disableMod("Testing Mod"); // log: "I am disabled..."
+    ModAttacher.enableMod("Testing Mod"); // "I am enabled!"
+    ModAttacher.fireEvent("log"); // "You have logged me."
+    ModAttacher.disableMod("Testing Mod"); // "I am disabled..."
     ```
 
 2. Creating and using a ModAttachr to log event activity, with timestamps and 
