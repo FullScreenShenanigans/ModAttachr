@@ -1,6 +1,6 @@
 # ModAttachr
 
-An addon for for extensible modding functionality. "Mods" register triggers such
+An addon to define extensibility triggers for projects for modding. "Mods" register triggers such
 as "onModEnable" or "onReset" that can be triggered. 
 
 
@@ -84,9 +84,11 @@ numbered logs.
             "events": {
                 "onModEnable": function () {
                     console.log("I am enabled!");
+                    return "I am enabled!";
                 },
                 "onModDisable": function () {
                     console.log("I am disabled...");
+                    return "I am disabled!";
                 },
                 "log": function (mod) {
                     var numLog = (mod.settings.numLogs += 1);
