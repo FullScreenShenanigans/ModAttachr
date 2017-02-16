@@ -6,7 +6,7 @@ import {
     IModAttachr, IModAttachrSettings, IMods, ITransformModName
 } from "./IModAttachr";
 
-import ModNames from "./ModNames"
+import EventNames from "./EventNames"
 /**
  * Hookups for extensible triggered mod events.
  */
@@ -34,7 +34,7 @@ export class ModAttachr implements IModAttachr {
     /**
     * class to hold modkeys instead of hardcoded strings
     */
-    private readonly modNames: ModNames;
+    private readonly eventNames: EventNames;
 
     /**
      * Initializes a new instance of the ModAttachr class.
@@ -56,7 +56,7 @@ export class ModAttachr implements IModAttachr {
             }
         }
 
-        this.modNames = new ModNames();
+        this.eventNames = new EventNames();
     }
 
     /**
@@ -113,7 +113,7 @@ export class ModAttachr implements IModAttachr {
             this.itemsHolder.setItem(this.transformModName(name), true);
         }
 
-        if (this.modNames.onModEnable) {
+        if (this.eventNames.onModEnable) {
         //if (mod.events.hasOwnProperty("onModEnable")) {
             return this.fireModEvent("onModEnable", mod.name, ...args);
         }
@@ -135,7 +135,7 @@ export class ModAttachr implements IModAttachr {
             this.itemsHolder.setItem(this.transformModName(name), false);
         }
 
-        if (this.modNames.onModDisable) {
+        if (this.eventNames.onModDisable) {
         //if (mod.events.hasOwnProperty("onModDisable")) {
             return this.fireModEvent("onModDisable", mod.name, ...args);
         }
