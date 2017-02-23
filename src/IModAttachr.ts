@@ -1,5 +1,5 @@
 import { IItemsHoldr } from "itemsholdr/lib/IItemsHoldr";
-
+import { EventNames } from "./EventNames"
 /**
  * General schema for a mod, including its name and events.
  */
@@ -22,7 +22,7 @@ export interface IMod {
 
 /**
  * Abstrack callback Function for any mod event.
- * 
+ *
  * @param args   The arguments for the mod event.
  * @returns The result of the mod (normally ignored).
  */
@@ -63,7 +63,7 @@ export interface ICallbackRegister {
 
 /**
  * Transforms mod names to storage keys.
- * 
+ *
  * @param name   Name of a mod.
  * @returns What the mod will be called in storage.
  */
@@ -94,6 +94,11 @@ export interface IModAttachrSettings {
      * Transforms mod names to storage keys.
      */
     transformModName?: ITransformModName;
+
+    /**
+     * Holds keys for mod events
+     */
+    eventNames?: EventNames;
 }
 
 /**
@@ -107,14 +112,14 @@ export interface IModAttachr {
 
     /**
      * Adds a mod to the pool of mods.
-     * 
+     *
      * @param mod   General schema for a mod, including its name and events.
      */
     addMod(mod: IMod): any;
 
     /**
      * Enables a mod.
-     * 
+     *
      * @param name   The name of the mod to enable.
      * @param args   Any additional arguments to pass to event callbacks.
      * @returns The result of the mod's onModEnable event, if it exists.
@@ -123,7 +128,7 @@ export interface IModAttachr {
 
     /**
      * Disables a mod.
-     * 
+     *
      * @param name   The name of the mod to disable.
      * @param args   Any additional arguments to pass to event callbacks.
      * @returns The result of the mod's onModDisable event, if it exists.
@@ -132,7 +137,7 @@ export interface IModAttachr {
 
     /**
      * Toggles a mod via enableMod/disableMod.
-     * 
+     *
      * @param name   The name of the mod to toggle.
      * @param args   Any additional arguments to pass to event callbacks.
      * @returns The result of the mod's onModEnable or onModDisable event.
@@ -141,7 +146,7 @@ export interface IModAttachr {
 
     /**
      * Fires an event, which calls all mods listed for that event.
-     * 
+     *
      * @param name   Name of the event to fire.
      * @param args   Any additional arguments to pass to event callbacks.
      */
@@ -149,7 +154,7 @@ export interface IModAttachr {
 
     /**
      * Fires an event for one mod.
-     * 
+     *
      * @param eventName   Name of the event to fire.
      * @param modName   Name of the mod to fire the event.
      * @param args   Any additional arguments to pass to event callbacks.
