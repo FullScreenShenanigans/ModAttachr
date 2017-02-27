@@ -1,10 +1,14 @@
 /**
-* Eventname class to hold keys for mod events
-*/
+ * Eventname class to hold keys for mod events
+ */
 export class EventNames {
-    /*key for event when mod is enabled*/
-    public readonly onModEnable = "onModEnable";
+    /*
+     * Key for event when mod is enabled.
+     */
+    public readonly onModEnable: string = "onModEnable";
 
-    /*key for event when mod is disabled*/
-    public readonly onModDisable = "onModDisable";
+    /*
+     * Key for event when mod is disabled.
+     */
+    public readonly onModDisable: string = "onModDisable";
 }
