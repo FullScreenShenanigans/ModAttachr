@@ -96,7 +96,7 @@ export interface IModAttachrSettings {
     transformModName?: ITransformModName;
 
     /**
-     * Holds keys for mod events
+     * Holds keys for mod events.
      */
     eventNames?: EventNames;
 }
