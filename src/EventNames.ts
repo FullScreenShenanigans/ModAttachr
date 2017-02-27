@@ -1,5 +1,5 @@
 /**
- * Eventname class to hold keys for mod events
+ * Eventname class to hold keys for mod events.
  */
 export class EventNames {
     /*
