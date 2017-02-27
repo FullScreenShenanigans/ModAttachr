@@ -1,12 +1,13 @@
 import { IItemsHoldr } from "itemsholdr/lib/IItemsHoldr";
 import { ItemsHoldr } from "itemsholdr/lib/ItemsHoldr";
 
+import { EventNames } from "./EventNames";
+
 import {
     ICallbackRegister, IEventCallback, IEventsRegister, IMod,
     IModAttachr, IModAttachrSettings, IMods, ITransformModName
 } from "./IModAttachr";
 
-import { EventNames } from "./EventNames"
 /**
  * Hookups for extensible triggered mod events.
  */
@@ -58,8 +59,7 @@ export class ModAttachr implements IModAttachr {
 
         if (settings.eventNames) {
           this.eventNames = settings.eventNames;
-        }
-        else {
+        } else {
           this.eventNames = new EventNames();
         }
     }
