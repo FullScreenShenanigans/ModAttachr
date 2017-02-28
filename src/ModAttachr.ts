@@ -33,7 +33,7 @@ export class ModAttachr implements IModAttachr {
     private readonly transformModName: ITransformModName;
 
     /**
-     * Class to hold modkeys in order to improve readability.
+     * Holds keys for mod events.
      */
     private readonly eventNames: EventNames;
 
@@ -57,11 +57,7 @@ export class ModAttachr implements IModAttachr {
             }
         }
 
-        if (settings.eventNames) {
-          this.eventNames = settings.eventNames;
-        } else {
-          this.eventNames = new EventNames();
-        }
+        this.eventNames = settings.eventNames || new EventNames();
     }
 
     /**
@@ -118,8 +114,8 @@ export class ModAttachr implements IModAttachr {
             this.itemsHolder.setItem(this.transformModName(name), true);
         }
 
-        if (mod.events.hasOwnProperty(this.eventNames.onModEnable)) {
-            return this.fireModEvent("onModEnable", mod.name, ...args);
+        if (mod.events[this.eventNames.onModEnable]) {
+            return this.fireModEvent(this.eventNames.onModEnable, mod.name, ...args);
         }
     }
 
@@ -139,8 +135,8 @@ export class ModAttachr implements IModAttachr {
             this.itemsHolder.setItem(this.transformModName(name), false);
         }
 
-        if (mod.events.hasOwnProperty(this.eventNames.onModDisable)) {
-            return this.fireModEvent("onModDisable", mod.name, ...args);
+        if (mod.events[this.eventNames.onModDisable]) {
+            return this.fireModEvent(this.eventNames.onModDisable, mod.name, ...args);
         }
     }
 
