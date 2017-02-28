@@ -39,10 +39,11 @@ export class ModAttachr implements IModAttachr {
 
     /**
      * Initializes a new instance of the ModAttachr class.
-     * 
+     *
      * @param settings   Settings to be used for initialization.
      */
     public constructor(settings: IModAttachrSettings = {}) {
+        this.eventNames = settings.eventNames || new EventNames();
         this.transformModName = settings.transformModName || ((name: string): string => name);
 
         if (settings.itemsHolder) {
@@ -56,8 +57,6 @@ export class ModAttachr implements IModAttachr {
                 this.addMod(mod);
             }
         }
-
-        this.eventNames = settings.eventNames || new EventNames();
     }
 
     /**
