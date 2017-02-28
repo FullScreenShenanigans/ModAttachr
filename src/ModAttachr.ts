@@ -39,7 +39,7 @@ export class ModAttachr implements IModAttachr {
 
     /**
      * Initializes a new instance of the ModAttachr class.
-     *
+     * 
      * @param settings   Settings to be used for initialization.
      */
     public constructor(settings: IModAttachrSettings = {}) {
