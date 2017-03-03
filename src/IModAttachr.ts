@@ -1,4 +1,5 @@
 import { IItemsHoldr } from "itemsholdr/lib/IItemsHoldr";
+
 import { EventNames } from "./EventNames";
 /**
  * General schema for a mod, including its name and events.
