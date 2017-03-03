@@ -112,7 +112,7 @@ export interface IModAttachr {
 
     /**
      * Adds a mod to the pool of mods.
-     *
+     * 
      * @param mod   General schema for a mod, including its name and events.
      */
     addMod(mod: IMod): any;
