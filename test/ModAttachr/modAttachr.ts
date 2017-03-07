@@ -8,7 +8,7 @@ import {
     IMod
 } from "../../src/IModAttachr";
 
-mochaLoader.it("Creates a mod and fires the events within it", (): void => {
+mochaLoader.it("Creates a mod and fires the contained events", (): void => {
     // Arrange
     const eventNames: EventNames = new EventNames();
     const dummyMod: IMod[] = [{
