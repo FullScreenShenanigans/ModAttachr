@@ -1,3 +1,4 @@
+import { EventNames } from "../../src/EventNames";
 import { IModAttachr, IModAttachrSettings } from "../../src/IModAttachr";
 import { ModAttachr } from "../../src/ModAttachr";
 
@@ -7,4 +8,14 @@ import { ModAttachr } from "../../src/ModAttachr";
  */
 export function mockModAttachr(settings?: IModAttachrSettings): IModAttachr {
     return new ModAttachr(settings);
+}
+
+/**
+ * Holds keys for custom mod events.
+ */
+export class CustomEventNames extends EventNames {
+    /*
+     * Key for some arbitrary custom event.
+     */
+    public readonly customEvent: string = "customEvent";
 }

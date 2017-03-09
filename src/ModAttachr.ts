@@ -216,7 +216,7 @@ export class ModAttachr implements IModAttachr {
         const eventCallback: IEventCallback | undefined = mod.events[name];
 
         if (!eventCallback) {
-            throw new Error(`Mod does not contain event '${name}'.`);
+            throw new Error(`Mod '${mod.name}' does not contain event '${name}'.`);
         }
 
         return eventCallback;
