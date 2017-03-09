@@ -18,7 +18,7 @@ mochaLoader.it("Testing to ensure onModEnable is fired properly", (): void => {
     };
     const modAttachr: ModAttachr = new ModAttachr({
         mods: [dummyMod],
-        eventNames: eventNames
+        eventNames
     });
 
     // Assert
@@ -39,7 +39,7 @@ mochaLoader.it("Testing to ensure onModDisable is fired properly", (): void => {
     };
     const modAttachr: ModAttachr = new ModAttachr({
         mods: [dummyMod],
-        eventNames: eventNames
+        eventNames
     });
 
     // Assert
@@ -59,7 +59,8 @@ mochaLoader.it("Testing to ensure a custom event is fired properly", (): void =>
         enabled: false
     };
     const modAttachr: ModAttachr = new ModAttachr({
-        eventNames: eventNames
+        mods: [dummyMod],
+        eventNames
     });
 
     // Assert
