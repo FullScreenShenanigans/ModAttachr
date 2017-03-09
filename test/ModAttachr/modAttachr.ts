@@ -2,7 +2,7 @@ import { EventNames } from "../../src/EventNames";
 import { IMod } from "../../src/IModAttachr";
 import { ModAttachr } from "../../src/ModAttachr";
 import { mochaLoader } from "../main";
-import { CustomEventNames } from "../utils/fakes";
+import { FakeEventNames } from "../utils/fakes";
 
 mochaLoader.it("Testing to ensure onModEnable is fired properly", (): void => {
     // Arrange
@@ -46,13 +46,13 @@ mochaLoader.it("Testing to ensure onModDisable is fired properly", (): void => {
     chai.expect(modAttachr.fireModEvent(modAttachr.eventNames.onModDisable, "Dummy Mod")).to.be.equal("success");
 });
 
-mochaLoader.it("Testing to ensure a custom event is fired properly", (): void => {
+mochaLoader.it("Testing to ensure an arbitrary fake event is fired properly", (): void => {
     // Arrange
-    const eventNames: CustomEventNames = new CustomEventNames();
+    const eventNames: FakeEventNames = new FakeEventNames();
     const dummyMod: IMod = {
-        name: "Dummy Custom Mod",
+        name: "Dummy Fake Mod",
         events: {
-            customEvent: (): number => {
+            fakeEvent: (): number => {
                 return 42;
             }
         },
@@ -64,5 +64,5 @@ mochaLoader.it("Testing to ensure a custom event is fired properly", (): void =>
     });
 
     // Assert
-    chai.expect(modAttachr.fireModEvent((modAttachr.eventNames as CustomEventNames).customEvent, "Dummy Custom Mod")).to.be.equal(42);
+    chai.expect(modAttachr.fireModEvent((modAttachr.eventNames as FakeEventNames).fakeEvent, "Dummy Fake Mod")).to.be.equal(42);
 });

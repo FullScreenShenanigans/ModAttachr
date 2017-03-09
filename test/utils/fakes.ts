@@ -11,11 +11,11 @@ export function mockModAttachr(settings?: IModAttachrSettings): IModAttachr {
 }
 
 /**
- * Holds keys for custom mod events.
+ * Holds keys for fake mod events.
  */
-export class CustomEventNames extends EventNames {
+export class FakeEventNames extends EventNames {
     /*
-     * Key for some arbitrary custom event.
+     * Key for some arbitrary fake event.
      */
-    public readonly customEvent: string = "customEvent";
+    public readonly fakeEvent: string = "fakeEvent";
 }
