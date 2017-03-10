@@ -10,9 +10,7 @@ mochaLoader.it("Testing to ensure onModEnable is fired properly", (): void => {
     const dummyMod: IMod = {
         name: "Dummy Mod",
         events: {
-            [eventNames.onModEnable]: (): string => {
-                return "success";
-            }
+            [eventNames.onModEnable]: (): string => "success"
         },
         enabled: false
     };
@@ -34,9 +32,7 @@ mochaLoader.it("Testing to ensure onModDisable is fired properly", (): void => {
     const dummyMod: IMod = {
         name: "Dummy Mod",
         events: {
-            [eventNames.onModDisable]: (): string => {
-                return "success";
-            }
+            [eventNames.onModDisable]: (): string => "success"
         },
         enabled: false
     };
@@ -58,9 +54,7 @@ mochaLoader.it("Testing to ensure an arbitrary fake event is fired properly", ()
     const dummyMod: IMod = {
         name: "Dummy Fake Mod",
         events: {
-            [eventNames.fakeEvent]: (): number => {
-                return 42;
-            }
+            [eventNames.fakeEvent]: (): number => 42
         },
         enabled: false
     };
